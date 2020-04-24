@@ -22,6 +22,14 @@ if ( ! function_exists( '_s_setup' ) ) :
 	 */
 	function _s_setup() {
 
+    /*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on _s, use a find and replace
+		 * to change '_s' to the name of your theme in all the template files.
+		 */
+		load_theme_textdomain( '_s', get_template_directory() . '/languages' );
+
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
@@ -93,6 +101,11 @@ function _s_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', '_s_scripts' );
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
