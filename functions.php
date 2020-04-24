@@ -103,6 +103,16 @@ function _s_scripts() {
 add_action( 'wp_enqueue_scripts', '_s_scripts' );
 
 /**
+ * Switch Jquery version
+ */
+function replace_core_jquery_version() {
+    wp_deregister_script( 'jquery' );
+    // Change the URL if you want to load a local copy of jQuery from your own server.
+    wp_register_script( 'jquery', get_template_directory_uri() . '/js/jquery.min.js', array(), '3.4.1' );
+}
+add_action( 'wp_enqueue_scripts', 'replace_core_jquery_version' );
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
