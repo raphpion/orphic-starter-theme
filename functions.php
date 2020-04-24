@@ -63,6 +63,16 @@ if ( ! function_exists( '_s_setup' ) ) :
 				'script',
 			)
 		);
+
+    /**
+		 * Add support for core custom logo.
+		 *
+		 * @link https://codex.wordpress.org/Theme_Logo
+		 */
+		add_theme_support(
+			'custom-logo',
+			array()
+		);
 	}
 endif;
 
@@ -108,7 +118,7 @@ add_action( 'wp_enqueue_scripts', '_s_scripts' );
 function replace_core_jquery_version() {
     wp_deregister_script( 'jquery' );
     // Change the URL if you want to load a local copy of jQuery from your own server.
-    wp_register_script( 'jquery', get_template_directory_uri() . '/js/jquery.min.js', array(), '3.4.1' );
+    wp_register_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery.min.js', array(), '3.4.1' );
 }
 add_action( 'wp_enqueue_scripts', 'replace_core_jquery_version' );
 
