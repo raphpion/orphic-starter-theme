@@ -18,6 +18,7 @@
 # Media
 	## Captions
 	## Galleries
+# Utility
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -575,6 +576,15 @@ textarea {
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
+.os-nav{
+	height:100px;
+	margin-bottom:1px;
+}
+
+.os-nav .os-nav-logo{
+	height:100%;
+}
+
 
 /*--------------------------------------------------------------
 ## Links
@@ -929,4 +939,48 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+
+/*--------------------------------------------------------------
+# Utilities
+--------------------------------------------------------------*/
+
+.os-hidden-main {
+	display: none !important;
+}
+
+@media screen and (max-width: 991px) {
+	.os-hidden-main {
+		display: inherit !important;
+	}
+	.os-hidden-medium {
+		display: none !important;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.os-hidden-main {
+		display: inherit !important;
+	}
+	.os-hidden-medium {
+		display: inherit !important;
+	}
+	.os-hidden-small {
+		display: none !important;
+	}
+}
+
+@media screen and (max-width: 479px) {
+	.os-hidden-main {
+		display: inherit !important;
+	}
+	.os-hidden-medium {
+		display: inherit !important;
+	}
+	.os-hidden-small {
+		display: inherit !important;
+	}
+	.os-hidden-tiny {
+		display: none !important;
+	}
 }
