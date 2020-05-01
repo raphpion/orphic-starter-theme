@@ -99,6 +99,35 @@ function _os_widgets_init() {
 add_action( 'widgets_init', '_os_widgets_init' );
 
 /**
+ * link customizer to gutenberg colors
+*/
+function os_guten_colors(){
+	$css = '';
+	$css .= '.has-primary-theme-color-background-color { background-color: ' . esc_attr(get_theme_mod('primary_theme_color')) . '; }';
+	$css .= '.has-secondary-theme-color-background-color { background-color: ' . esc_attr(get_theme_mod('secondary_theme_color')) . '; }';
+	$css .= '.has-light-color-background-color { background-color: ' . esc_attr(get_theme_mod('light_color')) . '; }';
+	$css .= '.has-dark-color-background-color { background-color: ' . esc_attr(get_theme_mod('dark_color')) . '; }';
+	$css .= '.has-primary-theme-color-color { color: ' . esc_attr(get_theme_mod('primary_theme_color')) . '!important; }';
+	$css .= '.has-secondary-theme-color-color { color: ' . esc_attr(get_theme_mod('secondary_theme_color')) . '!important; }';
+	$css .= '.has-light-color-color { color: ' . esc_attr(get_theme_mod('light_color')) . '!important; }';
+	$css .= '.has-dark-color-color { color: ' . esc_attr(get_theme_mod('dark_color')) . '!important; }';
+
+	return wp_strip_all_tags($css);
+}
+
+function os_default_colors(){
+	$primaryCol = esc_attr(get_theme_mod('primary_theme_color'));
+	$SecondaryCol = esc_attr(get_theme_mod('secondary_theme_color'));
+	$lightCol = esc_attr(get_theme_mod('light_color'));
+	$darkCol = esc_attr(get_theme_mod('dark_color'));
+
+	$css = "
+	";
+	return wp_strip_all_tags($css);
+}
+
+
+/**
  * Enqueue scripts and styles.
  */
 function _os_scripts() {
@@ -107,6 +136,10 @@ function _os_scripts() {
 
 	wp_enqueue_style( '_os-style', get_stylesheet_uri(), array(), _os_VERSION );
 
+  wp_add_inline_style('_os-style', os_guten_colors() );
+
+  wp_add_inline_style('_os-style', os_default_colors() );
+
 	wp_enqueue_script( '_os-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), _os_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -114,6 +147,22 @@ function _os_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', '_os_scripts' );
+
+
+/**
+*	Gutenberg assets
+*/
+add_action( 'enqueue_block_editor_assets', 'os_add_gutenberg_assets' );
+function os_add_gutenberg_assets() {
+
+	wp_enqueue_style( 'os-gutenberg-css', get_template_directory_uri() . '/assets/css/guten.css', false );
+
+	wp_add_inline_style('os-gutenberg-css',os_guten_colors() );
+
+	wp_add_inline_style('os-gutenberg-css', os_default_colors() );
+
+}
+
 
 /**
  * Switch Jquery version
