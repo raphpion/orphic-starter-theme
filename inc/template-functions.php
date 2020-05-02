@@ -46,3 +46,35 @@
      fwrite( $fp, $sitemap );
      fclose( $fp );
  }
+
+ //////////////////////////////////
+// fetch menu items by location
+//////////////////////////////////
+
+function get_nav_menu_items_by_location( $location, $args = array() ) {
+
+   // Get all locations
+   $locations = get_nav_menu_locations();
+
+   // Get object id by location
+   $object = wp_get_nav_menu_object( $locations[$location] );
+
+   // Get menu items by menu name
+   $menu_items = wp_get_nav_menu_items( $object->name, $args );
+
+   // Return menu post objects
+   return $menu_items;
+}
+
+
+// ///////////////////////////////////////
+// add active to menu items
+// //////////////////////////////////////
+
+function get_active_class( $items ) {
+   $actual_link = ( isset( $_SERVER['HTTPS'] ) ? "https" : "http" ) . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+   if ( $actual_link == $items->url ) {
+       return ' active';
+   }
+   return '';
+}
