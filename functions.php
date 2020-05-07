@@ -183,3 +183,8 @@ require get_template_directory() . '/inc/customizer.php';
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Functions which modify gutenberg
+ */
+require get_template_directory() . '/inc/gutenberg.php';
