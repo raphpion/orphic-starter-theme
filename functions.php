@@ -103,23 +103,23 @@ add_action( 'widgets_init', '_os_widgets_init' );
 */
 function os_guten_colors(){
 	$css = '';
-	$css .= '.has-primary-theme-color-background-color { background-color: ' . esc_attr(get_theme_mod('primary_theme_color')) . '; }';
-	$css .= '.has-secondary-theme-color-background-color { background-color: ' . esc_attr(get_theme_mod('secondary_theme_color')) . '; }';
-	$css .= '.has-light-color-background-color { background-color: ' . esc_attr(get_theme_mod('light_color')) . '; }';
-	$css .= '.has-dark-color-background-color { background-color: ' . esc_attr(get_theme_mod('dark_color')) . '; }';
-	$css .= '.has-primary-theme-color-color { color: ' . esc_attr(get_theme_mod('primary_theme_color')) . '!important; }';
-	$css .= '.has-secondary-theme-color-color { color: ' . esc_attr(get_theme_mod('secondary_theme_color')) . '!important; }';
-	$css .= '.has-light-color-color { color: ' . esc_attr(get_theme_mod('light_color')) . '!important; }';
-	$css .= '.has-dark-color-color { color: ' . esc_attr(get_theme_mod('dark_color')) . '!important; }';
+	$css .= '.has-primary-theme-color-background-color { background-color: ' . esc_attr(get_theme_mod('primary_theme_color','#f9b248')) . '; }';
+	$css .= '.has-secondary-theme-color-background-color { background-color: ' . esc_attr(get_theme_mod('secondary_theme_color','#21294c')) . '; }';
+	$css .= '.has-light-color-background-color { background-color: ' . esc_attr(get_theme_mod('light_color','#ffffff')) . '; }';
+	$css .= '.has-dark-color-background-color { background-color: ' . esc_attr(get_theme_mod('dark_color','#000000')) . '; }';
+	$css .= '.has-primary-theme-color-color { color: ' . esc_attr(get_theme_mod('primary_theme_color','#f9b248')) . '!important; }';
+	$css .= '.has-secondary-theme-color-color { color: ' . esc_attr(get_theme_mod('secondary_theme_color','#21294c')) . '!important; }';
+	$css .= '.has-light-color-color { color: ' . esc_attr(get_theme_mod('light_color','#ffffff')) . '!important; }';
+	$css .= '.has-dark-color-color { color: ' . esc_attr(get_theme_mod('dark_color','#000000')) . '!important; }';
 
 	return wp_strip_all_tags($css);
 }
 
 function os_default_colors(){
-	$primaryCol = esc_attr(get_theme_mod('primary_theme_color'));
-	$SecondaryCol = esc_attr(get_theme_mod('secondary_theme_color'));
-	$lightCol = esc_attr(get_theme_mod('light_color'));
-	$darkCol = esc_attr(get_theme_mod('dark_color'));
+	$primaryCol = esc_attr(get_theme_mod('primary_theme_color','#f9b248'));
+	$SecondaryCol = esc_attr(get_theme_mod('secondary_theme_color','#21294c'));
+	$lightCol = esc_attr(get_theme_mod('light_color','#ffffff'));
+	$darkCol = esc_attr(get_theme_mod('dark_color','#000000'));
 
 	$css = "
 	";
