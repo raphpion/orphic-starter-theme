@@ -44,3 +44,60 @@
 	) ) );
 }
 add_action( 'customize_register', 'os_customize_register' );
+
+function os_add_customizer_custom_controls($wp_customize) {
+    $wp_customize->add_section('typography', array(
+      'title' => __('Typography'),
+      'description' => __('Typo options'),
+      'capability' => 'edit_theme_options'
+    ));
+
+    $wp_customize->add_setting( 'typoScript',
+       array(
+          'default' => '',
+          'transport' => 'refresh'
+       )
+    );
+
+    $wp_customize->add_control( 'typoScript',
+       array(
+             'label' => __('Google font script import'),
+          'section' => 'typography',
+          'type' => 'textarea',
+          'capability' => 'edit_theme_options',
+       )
+    );
+
+    $wp_customize->add_setting( 'importScript',
+       array(
+          'default' => '',
+          'transport' => 'refresh'
+       )
+    );
+
+    $wp_customize->add_control( 'importScript',
+       array(
+           'label' => __('Google font @import import'),
+          'section' => 'typography',
+          'type' => 'textarea',
+          'capability' => 'edit_theme_options',
+       )
+    );
+
+    $wp_customize->add_setting( 'fontCssRule',
+       array(
+          'default' => '',
+          'transport' => 'refresh'
+       )
+    );
+
+    $wp_customize->add_control( 'fontCssRule',
+       array(
+           'label' => __('Google font css rule'),
+          'section' => 'typography',
+          'type' => 'textarea',
+          'capability' => 'edit_theme_options',
+       )
+    );
+}
+add_action('customize_register', 'os_add_customizer_custom_controls');

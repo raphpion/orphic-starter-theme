@@ -140,6 +140,10 @@ function _os_scripts() {
 
     wp_add_inline_style('_os-style', os_default_colors() );
 
+    $typoInline = "body{" . get_theme_mod('fontCssRule') . "}";
+
+    wp_add_inline_style('_os-style', $typoInline );
+
     wp_enqueue_script( '_os-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), _os_VERSION, true );
 
     wp_enqueue_script( '_os-nav-script', get_template_directory_uri() . '/assets/js/nav.js', array('jquery'), _os_VERSION, true);
@@ -168,6 +172,10 @@ function os_add_gutenberg_assets() {
 	wp_add_inline_style('os-gutenberg-css',os_guten_colors() );
 
 	wp_add_inline_style('os-gutenberg-css', os_default_colors() );
+
+    $typoInline = get_theme_mod('importScript') . ".editor-styles-wrapper p,.editor-styles-wrapper h1,.editor-styles-wrapper h2,.editor-styles-wrapper h3,.editor-styles-wrapper h4,.editor-styles-wrapper h5,.editor-styles-wrapper h6,.editor-styles-wrapper ul,.editor-styles-wrapper ol{" . get_theme_mod('fontCssRule') . "}";
+
+    wp_add_inline_style('os-gutenberg-css', $typoInline );
 
 }
 
