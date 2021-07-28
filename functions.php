@@ -218,6 +218,12 @@ function mytheme_admin_bar_render() {
 add_action( 'wp_before_admin_bar_render', 'mytheme_admin_bar_render' );
 
 /**
+ * Block register
+ */
+require get_template_directory() . '/inc/block-register.php';
+
+
+/**
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
