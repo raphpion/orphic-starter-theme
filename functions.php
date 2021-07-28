@@ -115,13 +115,18 @@ function os_guten_colors(){
 	return wp_strip_all_tags($css);
 }
 
-function os_default_colors(){
+function os_global_css(){
 	$primaryCol = get_field('primary_color','option');
 	$SecondaryCol = get_field('secondary_color','option');
 	$lightCol = get_field('light_color','option');
 	$darkCol = get_field('dark_color','option');
 
+	$buttonBorderRadius = get_field('button_border_radius','option');
+
 	$css = "
+	.wp-block-button__link{
+		border-radius:{$buttonBorderRadius}px;
+	}
 	";
 	return wp_strip_all_tags($css);
 }
@@ -138,7 +143,7 @@ function _os_scripts() {
 
     wp_add_inline_style('_os-style', os_guten_colors() );
 
-    wp_add_inline_style('_os-style', os_default_colors() );
+    wp_add_inline_style('_os-style', os_global_css() );
 
     $typoInline = "body{" . get_field('typo_css','option') . "}";
 
@@ -171,7 +176,7 @@ function os_add_gutenberg_assets() {
 
 	wp_add_inline_style('os-gutenberg-css',os_guten_colors() );
 
-	wp_add_inline_style('os-gutenberg-css', os_default_colors() );
+	wp_add_inline_style('os-gutenberg-css', os_global_css() );
 
     $typoInline = get_field('typo_import','option') . ".editor-styles-wrapper p,.editor-styles-wrapper h1,.editor-styles-wrapper h2,.editor-styles-wrapper h3,.editor-styles-wrapper h4,.editor-styles-wrapper h5,.editor-styles-wrapper h6,.editor-styles-wrapper ul,.editor-styles-wrapper ol{" . get_field('typo_css','option') . "}";
 
