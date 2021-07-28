@@ -12,22 +12,22 @@
         array(
           'name' => 'Primary color',
           'slug' => 'primary_theme_color',
-          'color' => get_theme_mod('primary_theme_color','#f9b248')
+          'color' => get_field('primary_color','option')
         ),
         array(
           'name' => 'Secondary color',
           'slug' => 'secondary_theme_color',
-          'color' => get_theme_mod('secondary_theme_color','#21294c')
+          'color' => get_field('secondary_color','option')
         ),
         array(
           'name' => 'Dark color',
           'slug' => 'dark_color',
-          'color' => get_theme_mod('dark_color','#000000')
+          'color' => get_field('dark_color','option')
         ),
         array(
           'name' => 'Light color',
           'slug' => 'light_color',
-          'color' => get_theme_mod('light_color','#ffffff')
+          'color' => get_field('light_color','option')
         )
       )
     );

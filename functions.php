@@ -99,27 +99,27 @@ function _os_widgets_init() {
 add_action( 'widgets_init', '_os_widgets_init' );
 
 /**
- * link customizer to gutenberg colors
+ * link options page to gutenberg colors
 */
 function os_guten_colors(){
 	$css = '';
-	$css .= '.has-primary-theme-color-background-color { background-color: ' . esc_attr(get_theme_mod('primary_theme_color','#f9b248')) . '; }';
-	$css .= '.has-secondary-theme-color-background-color { background-color: ' . esc_attr(get_theme_mod('secondary_theme_color','#21294c')) . '; }';
-	$css .= '.has-light-color-background-color { background-color: ' . esc_attr(get_theme_mod('light_color','#ffffff')) . '; }';
-	$css .= '.has-dark-color-background-color { background-color: ' . esc_attr(get_theme_mod('dark_color','#000000')) . '; }';
-	$css .= '.has-primary-theme-color-color { color: ' . esc_attr(get_theme_mod('primary_theme_color','#f9b248')) . '!important; }';
-	$css .= '.has-secondary-theme-color-color { color: ' . esc_attr(get_theme_mod('secondary_theme_color','#21294c')) . '!important; }';
-	$css .= '.has-light-color-color { color: ' . esc_attr(get_theme_mod('light_color','#ffffff')) . '!important; }';
-	$css .= '.has-dark-color-color { color: ' . esc_attr(get_theme_mod('dark_color','#000000')) . '!important; }';
+	$css .= '.has-primary-theme-color-background-color { background-color: ' . get_field('primary_color','option') . '; }';
+	$css .= '.has-secondary-theme-color-background-color { background-color: ' . get_field('secondary_color','option') . '; }';
+	$css .= '.has-light-color-background-color { background-color: ' . get_field('light_color','option') . '; }';
+	$css .= '.has-dark-color-background-color { background-color: ' . get_field('dark_color','option') . '; }';
+	$css .= '.has-primary-theme-color-color { color: ' . get_field('primary_color','option') . '!important; }';
+	$css .= '.has-secondary-theme-color-color { color: ' . get_field('secondary_color','option') . '!important; }';
+	$css .= '.has-light-color-color { color: ' . get_field('light_color','option') . '!important; }';
+	$css .= '.has-dark-color-color { color: ' . get_field('dark_color','option') . '!important; }';
 
 	return wp_strip_all_tags($css);
 }
 
 function os_default_colors(){
-	$primaryCol = esc_attr(get_theme_mod('primary_theme_color','#f9b248'));
-	$SecondaryCol = esc_attr(get_theme_mod('secondary_theme_color','#21294c'));
-	$lightCol = esc_attr(get_theme_mod('light_color','#ffffff'));
-	$darkCol = esc_attr(get_theme_mod('dark_color','#000000'));
+	$primaryCol = get_field('primary_color','option');
+	$SecondaryCol = get_field('secondary_color','option');
+	$lightCol = get_field('light_color','option');
+	$darkCol = get_field('dark_color','option');
 
 	$css = "
 	";
@@ -140,7 +140,7 @@ function _os_scripts() {
 
     wp_add_inline_style('_os-style', os_default_colors() );
 
-    $typoInline = "body{" . get_theme_mod('fontCssRule') . "}";
+    $typoInline = "body{" . get_field('typo_css','option') . "}";
 
     wp_add_inline_style('_os-style', $typoInline );
 
@@ -173,7 +173,7 @@ function os_add_gutenberg_assets() {
 
 	wp_add_inline_style('os-gutenberg-css', os_default_colors() );
 
-    $typoInline = get_theme_mod('importScript') . ".editor-styles-wrapper p,.editor-styles-wrapper h1,.editor-styles-wrapper h2,.editor-styles-wrapper h3,.editor-styles-wrapper h4,.editor-styles-wrapper h5,.editor-styles-wrapper h6,.editor-styles-wrapper ul,.editor-styles-wrapper ol{" . get_theme_mod('fontCssRule') . "}";
+    $typoInline = get_field('typo_import','option') . ".editor-styles-wrapper p,.editor-styles-wrapper h1,.editor-styles-wrapper h2,.editor-styles-wrapper h3,.editor-styles-wrapper h4,.editor-styles-wrapper h5,.editor-styles-wrapper h6,.editor-styles-wrapper ul,.editor-styles-wrapper ol{" . get_field('typo_css','option') . "}";
 
     wp_add_inline_style('os-gutenberg-css', $typoInline );
 
@@ -217,16 +217,26 @@ function mytheme_admin_bar_render() {
 }
 add_action( 'wp_before_admin_bar_render', 'mytheme_admin_bar_render' );
 
+
+/**
+ * Register theme option page
+ */
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme General Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+
+}
+
 /**
  * Block register
  */
 require get_template_directory() . '/inc/block-register.php';
-
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.

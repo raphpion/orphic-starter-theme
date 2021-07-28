@@ -16,7 +16,7 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<?php echo get_theme_mod('typoScript') ?>
+	<?php echo get_field('typo_script','option') ?>
 	<?php wp_head(); ?>
 </head>
 
