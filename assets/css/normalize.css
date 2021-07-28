@@ -1473,7 +1473,8 @@ textarea.w-select {
 .w-container {
   margin-left: auto;
   margin-right: auto;
-  max-width: 940px;
+  max-width: 1400px;
+  padding:0 20px;
 }
 .w-container:before,
 .w-container:after {
@@ -1559,9 +1560,6 @@ textarea.w-select {
   display: none !important;
 }
 @media screen and (max-width: 991px) {
-  .w-container {
-    max-width: 728px;
-  }
   .w-hidden-main {
     display: inherit !important;
   }
